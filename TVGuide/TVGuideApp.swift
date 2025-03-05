@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct TVGuideApp: App {
+    @StateObject private var viewModelContainer: ViewModelContainer
+
+    init() {
+        _viewModelContainer = StateObject(wrappedValue: ViewModelContainer(repositories: RepositoryContainer()))
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.viewModels, viewModelContainer)
         }
     }
 }
